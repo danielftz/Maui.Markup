@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui.Controls;
+﻿using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Layouts;
 
 namespace CommunityToolkit.Maui.Markup;
@@ -15,7 +16,7 @@ public static class ViewInFlexLayoutExtensions
     /// <param name="view"></param>
     /// <param name="value"></param>
     /// <returns>View with AlignSelf</returns>
-    public static TView AlignSelf<TView>(this TView view, FlexAlignSelf value) where TView : View
+    public static TView AlignSelf<TView>(this TView view, FlexAlignSelf value) where TView : BindableObject, IView
     {
         FlexLayout.SetAlignSelf(view, value);
         return view;
@@ -28,7 +29,7 @@ public static class ViewInFlexLayoutExtensions
     /// <param name="view"></param>
     /// <param name="value"></param>
     /// <returns>View with SetBasis</returns>
-    public static TView Basis<TView>(this TView view, FlexBasis value) where TView : View
+    public static TView Basis<TView>(this TView view, FlexBasis value) where TView : BindableObject, IView
     {
         FlexLayout.SetBasis(view, value);
         return view;
@@ -41,7 +42,7 @@ public static class ViewInFlexLayoutExtensions
     /// <param name="view"></param>
     /// <param name="value"></param>
     /// <returns>View with SetGrow</returns>
-    public static TView Grow<TView>(this TView view, float value) where TView : View
+    public static TView Grow<TView>(this TView view, float value) where TView : BindableObject, IView
     {
         FlexLayout.SetGrow(view, value);
         return view;
@@ -54,7 +55,7 @@ public static class ViewInFlexLayoutExtensions
     /// <param name="view"></param>
     /// <param name="value"></param>
     /// <returns>View with SetOrder</returns>
-    public static TView Order<TView>(this TView view, int value) where TView : View
+    public static TView Order<TView>(this TView view, int value) where TView : BindableObject, IView
     {
         FlexLayout.SetOrder(view, value);
         return view;
@@ -67,7 +68,7 @@ public static class ViewInFlexLayoutExtensions
     /// <param name="view"></param>
     /// <param name="value"></param>
     /// <returns>View with SetShrink</returns>
-    public static TView Shrink<TView>(this TView view, float value) where TView : View
+    public static TView Shrink<TView>(this TView view, float value) where TView : BindableObject, IView
     {
         FlexLayout.SetShrink(view, value);
         return view;

@@ -77,7 +77,8 @@ public static class ElementGesturesExtensions
     /// and pass it to the supplied <paramref name="init"/> Action</summary>
     public static TGestureElement Gesture<TGestureElement, TGestureRecognizer>(
         this TGestureElement gestureElement,
-        Action<TGestureRecognizer> init) where TGestureElement : Element, IGestureRecognizers where TGestureRecognizer : GestureRecognizer, new()
+        Action<TGestureRecognizer> init) where TGestureElement : Element, IGestureRecognizers
+                                        where TGestureRecognizer : IGestureRecognizer, new()
     {
         var gestureRecognizer = new TGestureRecognizer();
         init.Invoke(gestureRecognizer);

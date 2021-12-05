@@ -54,20 +54,20 @@ public static class GridRowsColumns
         /// <param name="columns"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public static ColumnDefinitionCollection Define<TEnum>(params (TEnum name, GridLength width)[] columns) where TEnum : Enum
+        public static ColumnDefinitionCollection Define<TEnum>(params (TEnum Name, GridLength Width)[] columns) where TEnum : Enum
         {
             var columnDefinitions = new ColumnDefinitionCollection();
 
             for (int i = 0; i < columns.Length; i++)
             {
-                if (i != columns[i].name.ToInt())
+                if (i != columns[i].Name.ToInt())
                 {
                     throw new ArgumentException(
-                        $"Value of column name {columns[i].name} is not {i}. " +
+                        $"Value of column name {columns[i].Name} is not {i}. " +
                         "Columns must be defined with enum names whose values form the sequence 0,1,2,...");
                 }
 
-                columnDefinitions.Add(new ColumnDefinition { Width = columns[i].width });
+                columnDefinitions.Add(new ColumnDefinition { Width = columns[i].Width });
             }
 
             return columnDefinitions;
@@ -101,19 +101,19 @@ public static class GridRowsColumns
         /// <param name="rows"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public static RowDefinitionCollection Define<TEnum>(params (TEnum name, GridLength height)[] rows) where TEnum : Enum
+        public static RowDefinitionCollection Define<TEnum>(params (TEnum Name, GridLength Height)[] rows) where TEnum : Enum
         {
             var rowDefinitions = new RowDefinitionCollection();
             for (int i = 0; i < rows.Length; i++)
             {
-                if (i != rows[i].name.ToInt())
+                if (i != rows[i].Name.ToInt())
                 {
                     throw new ArgumentException(
-                        $"Value of row name {rows[i].name} is not {i}. " +
+                        $"Value of row name {rows[i].Name} is not {i}. " +
                         "Rows must be defined with enum names whose values form the sequence 0,1,2,...");
                 }
 
-                rowDefinitions.Add(new RowDefinition { Height = rows[i].height });
+                rowDefinitions.Add(new RowDefinition { Height = rows[i].Height });
             }
             return rowDefinitions;
         }
