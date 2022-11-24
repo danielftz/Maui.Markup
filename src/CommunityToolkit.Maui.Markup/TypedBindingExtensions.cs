@@ -12,6 +12,32 @@ public static class TypedBindingExtensions
 		this TBindable bindable,
 		BindableProperty targetProperty,
 		Func<TBindingContext, TSource> getter,
+		Tuple<Func<TBindingContext, object>, string>[] handlers,
+		Action<TBindingContext, TSource>? setter = null,
+		BindingMode? mode = null,
+		string? stringFormat = null,
+		TBindingContext? source = default) where TBindable : BindableObject
+	{
+		bindable.SetBinding(targetProperty, new TypedBinding<TBindingContext, TSource>(result => (getter(result), true), setter, handlers)
+		{
+			Mode = (setter, mode) switch
+			{
+				(_, not null) => mode.Value, // Always use the provided mode when given
+				(null, null) => BindingMode.OneWay, // When setter is null, binding is read-only; use BindingMode.OneWay to improve performance
+				_ => BindingMode.Default // Default to BindingMode.Default
+			},
+			StringFormat = stringFormat,
+			Source = source,
+		});
+
+		return bindable;
+	}
+
+	/// <summary>Bind to a specified property</summary>
+	public static TBindable Bind<TBindable, TBindingContext, TSource>(
+		this TBindable bindable,
+		BindableProperty targetProperty,
+		Func<TBindingContext, TSource> getter,
 		Action<TBindingContext, TSource>? setter = null,
 		BindingMode? mode = null,
 		string? stringFormat = null,
